@@ -1,0 +1,60 @@
+@startuml SingletonClassDiagram
+
+scale 600 width
+
+interface IScenarioFactory{
+    CreateHumiditySensor() : ISensor
+    CreateTemperatureSensor(): ISensor
+    CreateIlluminationSensor() : ISensor
+    GetPlace() : string
+}
+
+interface ISensor{
+    GetValue(): string
+}
+
+class LowHumidityScenario{
+    place:string
+    +constructor()
+}
+
+class StandardScenario{
+    place:string
+    +constructor()
+}
+
+class HumiditySensor{
+    +constructor()
+}
+
+class TemperatureSensor{
+    +constructor()
+}
+
+class IlluminationSensor{
+    +constructor()
+}
+
+class ClientCode{
+    +HumiditySensor:ISensor
+    +constructor()
+}
+
+StandardScenario -|> IScenarioFactory
+LowHumidityScenario --|> IScenarioFactory
+
+ISensor <|-- HumiditySensor
+ISensor <|-- TemperatureSensor 
+ISensor <|-- IlluminationSensor
+
+StandardScenario *-- HumiditySensor
+StandardScenario *--- TemperatureSensor
+StandardScenario *--- IlluminationSensor
+
+LowHumidityScenario *--- HumiditySensor
+LowHumidityScenario *--- TemperatureSensor
+LowHumidityScenario *--- IlluminationSensor
+
+ClientCode ---> IScenarioFactory
+
+@enduml

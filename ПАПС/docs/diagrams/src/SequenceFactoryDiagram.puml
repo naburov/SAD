@@ -1,0 +1,26 @@
+@startuml SingletonFactoryDiagram
+
+actor Client
+
+Client -> IScenarioFactory
+activate IScenarioFactory
+
+IScenarioFactory -> LowHumidityScenario: create()
+activate LowHumidityScenario
+
+LowHumidityScenario -> HumiditySensor: create()
+activate HumiditySensor
+HumiditySensor --> Client: value
+deactivate HumiditySensor
+
+Client -> IScenarioFactory
+
+IScenarioFactory -> StandardScenario: create()
+activate StandardScenario
+
+StandardScenario -> HumiditySensor: create()
+activate HumiditySensor
+HumiditySensor --> Client: value
+deactivate HumiditySensor
+
+@enduml

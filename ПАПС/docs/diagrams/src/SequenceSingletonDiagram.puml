@@ -1,0 +1,10 @@
+@startuml SingletonSequenceDiagram
+
+Database -> DatabaseConnection: GetConnectionString()
+activate Database
+DatabaseConnection -> DatabaseConnection: new DatabaseConnection()
+activate DatabaseConnection
+
+DatabaseConnection -> Database: Connection: Database
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml SingletonClassDiagram
+
+class DatabaseConnection{
+    -DatabaseConnection connection
+
+    <<get/private set>> string provider
+    <<get/private set>> string username
+    <<get/private set>> string password
+    <<get/private set>> string dBName
+
+    +DatabaseConnection GetDatabaseConnection()
+    -constructor()
+}
+
+class Database{
+    +DatabaseConnection conn
+    +GetConnection()
+}
+
+DatabaseConnection <-- Database
+
+@enduml
