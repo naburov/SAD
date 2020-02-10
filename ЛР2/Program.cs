@@ -18,7 +18,6 @@ namespace ЛР2
 
             var pie = pieBaker.CreateProduct();
             var donut = donutBaker.CreateProduct();
-
         }
     }
 }

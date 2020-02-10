@@ -1,0 +1,27 @@
+@startuml BuilderSequenceDiagram
+
+actor Client
+
+Client->Baker: CreateProduct()
+activate Baker
+
+Baker -> IBakeryRecipe
+IBakeryRecipe -> PieRecipe: create()
+activate PieRecipe
+
+PieRecipe->BakeryProduct: create()
+activate BakeryProduct
+
+IBakeryRecipe->PieRecipe: createDough()
+
+IBakeryRecipe->PieRecipe: createFilling()
+
+IBakeryRecipe->PieRecipe: bake()
+
+BakeryProduct --> PieRecipe: product
+PieRecipe-->Baker:product
+Baker --> Client:product
+
+
+
+@enduml

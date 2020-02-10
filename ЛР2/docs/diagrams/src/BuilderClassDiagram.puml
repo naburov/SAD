@@ -1,0 +1,49 @@
+@startuml BuilderClassDiagram
+
+scale 600 width
+
+interface IBakeryRecipe{
+    CreateDough():void
+    CreateFilling():void
+    bake():void;
+    GetProduct():BakeryProduct
+}
+
+class BakeryProduct{
+    +dough: string
+    +filling: string[]
+    +bakingTime: int 
+
+    +constructor()
+}
+
+class DonutRecipe{
+    Donut:BakeryProduct
+}
+
+class PieRecipe{
+    Pie:BakeryProduct
+}
+
+class Client{
+
+}
+
+class Baker{
+    builder:IBakeryRecipe
+    +GetProduct():BakeryProduct
+    +constructor(IBakeryRecipe recipe)
+}
+
+Client-->Baker
+Baker --> IBakeryRecipe
+PieRecipe ..|> IBakeryRecipe
+DonutRecipe ..|> IBakeryRecipe
+
+PieRecipe ----> BakeryProduct
+DonutRecipe ----> BakeryProduct
+Client ------> BakeryProduct
+
+
+
+@enduml
