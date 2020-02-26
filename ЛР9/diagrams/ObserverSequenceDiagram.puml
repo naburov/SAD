@@ -1,0 +1,24 @@
+@startuml ProxySequenceDiagram
+
+actor Client
+
+Client->NewsAgency: create()
+activate NewsAgency
+
+Client->NewsSubsriber1: create()
+activate NewsSubsriber1
+
+Client->NewsSubsriber2: create()
+activate NewsSubsriber2
+
+NewsSubsriber1->NewsAgency: AddObserver()
+NewsSubsriber2->NewsAgency:AddObserver()
+
+NewsAgency -> NewsSubsriber1: SendNews()
+NewsAgency -> NewsSubsriber2: SendNews()
+
+deactivate NewsAgency
+deactivate NewsSubsriber1
+deactivate NewsSubsriber2
+
+@enduml

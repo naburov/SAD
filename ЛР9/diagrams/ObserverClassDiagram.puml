@@ -1,0 +1,34 @@
+@startuml ProxyClassDiagram
+
+scale 600 width
+
+interface IObservable{
+    AddObserver(IObserver o): void
+    RemoveObserver(IObserver o): void
+}
+
+interface IObserver{
+    ReceiveNews(IObserver o): void
+}
+
+class NewsAgency{
+    +<<get, set>> List<IObserver>
+    +SendNews(): void
+    +constructor()
+}
+
+class NewsSubscriber{    
+    +<<get, set>>List<string> News
+    +constructor()
+}
+
+class Client{
+
+}
+
+NewsSubscriber --|>IObserver
+NewsAgency --|> IObservable
+NewsAgency *--|> IObserver
+Client -> NewsAgency
+
+@enduml
