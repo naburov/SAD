@@ -1,0 +1,39 @@
+@startuml ProxyClassDiagram
+
+scale 600 width
+
+abstract class SmartHouseController{
+     +<<get, set>> Value
+     
+}
+
+class SmartHouseControllerProxy{
+    -controller:SmartHouseController
+    -logs:List<string>
+    +<<get>> Logs: List<string>
+
+    +constructor()
+}
+
+class Sensor{
+    +constructor()
+}
+
+class Actuator{
+    +constructor()
+}
+
+
+class Client{
+
+}
+
+
+SmartHouseControllerProxy --|> SmartHouseController
+Sensor --|> SmartHouseController
+Actuator --|> SmartHouseController
+
+Client --> SmartHouseControllerProxy
+
+
+@enduml

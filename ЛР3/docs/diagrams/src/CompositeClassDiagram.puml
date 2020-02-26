@@ -1,0 +1,31 @@
+@startuml ClassDiagram
+
+class Client{
+
+}
+
+interface ITask{
+     <<get>> Time: int
+     <<get set>> Status: string
+     <<get>>  Employees: List<string>
+
+    void Start(): void
+    void Complete(): void
+}
+
+class Task{
+    SelectResponsibleEmployee(string Employee):void
+    +constructor();
+}
+
+class ComplicateTask{
+    +AddTask(Task task):void
+    +RemoveTask(Task task):void
+}
+
+Client ..> ITask
+Task --|> ITask
+ComplicateTask --|> ITask
+Task --* ComplicateTask
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml ProxySequenceDiagram
+
+actor Client
+
+Client->SmartHouseControllerProxy: create(SmartHouseController)
+activate SmartHouseControllerProxy
+
+SmartHouseControllerProxy -> SmartHouseController
+activate SmartHouseController
+
+Client->SmartHouseControllerProxy: getValue()
+SmartHouseControllerProxy->SmartHouseController:getValue()
+
+SmartHouseController --> SmartHouseControllerProxy: return value
+SmartHouseControllerProxy-->Client: return value
+
+deactivate SmartHouseController
+deactivate SmartHouseControllerProxy
+
+@enduml

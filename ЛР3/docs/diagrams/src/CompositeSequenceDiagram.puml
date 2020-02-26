@@ -1,0 +1,15 @@
+@startuml SequenceDiagram
+Client -> Task1: create()
+activate Task1
+Client -> Task2: create()
+activate Task2
+
+Client -> ComplicateTask: create()
+activate ComplicateTask
+Client-> ComplicateTask: addTask(Task1)
+Client-> ComplicateTask: addTask(Task2)
+
+Client -> ComplicateTask: getEmployees()
+ComplicateTask --> Client: reurn Employees
+
+@enduml
