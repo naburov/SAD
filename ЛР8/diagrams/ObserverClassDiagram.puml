@@ -1,0 +1,39 @@
+@startuml ProxyClassDiagram
+
+scale 600 width
+
+abstract class AbstractExpression{
+    +abstract Interpret(Context context): bool
+}
+
+class Context{
+    +Variables: Dictionary<string, bool>
+
+    +SetVariable(string name, bool value): void
+    +GetVariable(string name): bool
+}
+
+class AndExpression{
+
+}
+
+class OrExpression{
+
+}
+
+class TerminalExpression{
+
+}
+
+class Client{
+
+}
+
+AndExpression --|>AbstractExpression
+OrExpression --|> AbstractExpression
+TerminalExpression --|> AbstractExpression
+AbstractExpression -- Context
+Client -- Context
+Client -- AbstractExpression
+
+@enduml

@@ -11,6 +11,7 @@ namespace ЛР6
         public string ClientName;
 
         private SmartHouseController controller;
+
         List<string> logs = new List<string>();
 
         public List<string> Logs => logs;

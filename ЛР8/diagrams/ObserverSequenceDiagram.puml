@@ -1,0 +1,49 @@
+@startuml ProxySequenceDiagram
+
+actor Client
+
+Client->Context: create()
+activate Context
+
+Client->AbstractExpression: create()
+activate AbstractExpression
+
+AbstractExpression->AndExpression: create()
+activate AndExpression
+
+AbstractExpression->OrExpression: create()
+activate OrExpression
+
+AbstractExpression->TerminalExpression: create()
+activate TerminalExpression
+
+Client->AbstractExpression: interpret()
+activate AbstractExpression
+
+AbstractExpression->AndExpression: interpret()
+activate AndExpression
+
+AbstractExpression->OrExpression: interpret()
+activate OrExpression
+
+AbstractExpression->TerminalExpression: interpret()
+activate TerminalExpression
+
+TerminalExpression --> AbstractExpression: return
+deactivate TerminalExpression
+deactivate TerminalExpression
+
+OrExpression --> AbstractExpression: return
+deactivate OrExpression
+deactivate OrExpression
+
+AndExpression --> AbstractExpression: return
+deactivate AndExpression
+deactivate AndExpression
+
+AbstractExpression --> Client: return 
+deactivate AbstractExpression
+deactivate AbstractExpression
+deactivate Context
+
+@enduml
